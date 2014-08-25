@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Todo::VERSION
   spec.authors       = ["Kavinder Dhaliwal"]
   spec.email         = ["kavinderd@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Command Line Based Todo App}
+  spec.description   = %q{Because if you spend all day at the terminal you might as well keep your todos there as well}
   spec.homepage      = ""
   spec.license       = "MIT"
 
