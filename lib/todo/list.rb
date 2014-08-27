@@ -1,3 +1,4 @@
+require_relative "list_item"
 module Todo
 	class List
 		attr_reader :tasks
