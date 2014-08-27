@@ -50,7 +50,7 @@ When a task is finished you can either invoke `check` with the name of the task 
 
 8. Edit a task
 
-  todo edit 'get some milk' -n 'Get Some Milk' -d '1 month'
+ 	 `todo edit 'get some milk' -n 'Get Some Milk' -d '1 month'`
 
 ## Installation
 
