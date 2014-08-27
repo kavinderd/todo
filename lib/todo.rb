@@ -1,5 +1,23 @@
-require "todo/version"
-
+#TODO: Read PR article about require and require relative
+require_relative "todo/version"
+require_relative "todo/list"
+require 'pry'
+require 'pry-debugger'
 module Todo
-  # Your code goes here...
+
+	class Application
+	  
+		def initialize()
+			@list = Todo::List.new()
+		end
+
+		def add(task_name)
+			@list << task_name
+		end
+
+		def tasks
+			@list.all
+		end
+
+	end
 end

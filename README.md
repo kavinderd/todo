@@ -6,7 +6,7 @@ I find it hard to manage my todo list in any application (Evernote, Trello, Wund
 
 ###The Solution
 	
-	Todo can be used in the following ways:
+Todo can be used in the following ways:
 
 1. Add a task to the general list:
     
@@ -63,6 +63,10 @@ And then execute:
 Or install it yourself as:
 
     $ gem install todo
+
+- **Setup**
+
+In order to setup todo on your machine you'll need to do the following:
 
 ## Usage
 
