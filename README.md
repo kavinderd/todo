@@ -9,42 +9,44 @@ I find it hard to manage my todo list in any application (Evernote, Trello, Wund
 Todo can be used in the following ways:
 
 1. Add a task to the general list:
-    
-    todo 'get some milk'
+	
+	`todo 'get some milk'`
 
 2. Add a task to the general list with priority:
 
-   todo 'get some milk' -p high
+   `todo 'get some milk' -p high`
 
 This will push the item to the top of the list.
 
 3. Add a task to the general list with a due date:
 
-  todo 'get some milk' -d (tomorrow, 1/1/15, 1 week)
+   `todo 'get some milk' -d (tomorrow, 1/1/15, 1 week)`
 
 4. Add a task to a specific list:
 
-  todo 'get some milk' -l groceries
+  	`todo 'get some milk' -l groceries`
 
 5. Recall a list
 
-  todo groceries
+	  `todo groceries`
 
 This returnes
 
-   1. 'get some milk' | due date: tomorrow | priority: high
+   1. `'get some milk' | due date: tomorrow | priority: high`
 
 6. Mark a task as done
 
-	todo check 'get some milk' -l groceries
-  todo check 1 -l groceries
+	 `todo check 'get some milk' -l groceries`
+ 
+	 ` todo check 1 -l groceries`
 
 When a task is finished you can either invoke `check` with the name of the task or with the number on the priority list.
 
 7. Delete a task
 
-	todo delete 'get some milk' -l groceries
-  todo delete 1 -l groceries
+	`todo delete 'get some milk' -l groceries`
+  	
+  	`todo delete 1 -l groceries`
 
 8. Edit a task
 
