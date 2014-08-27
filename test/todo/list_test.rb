@@ -13,4 +13,11 @@ class ListTest < MiniTest::Unit::TestCase
 		list << "my task"
 		assert_equal(["my task"], list.all)
 	end
+
+	def test_removing_from_internal_list
+		list = Todo::List.new
+		list << "my task"
+		list.remove("my task")
+		assert_equal([], list.all)
+	end
 end

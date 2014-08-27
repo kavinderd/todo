@@ -9,6 +9,11 @@ module Todo
 			@tasks << item
 		end
 
+		def remove(item)
+			@tasks.delete_if{|t| t == item}
+			all
+		end
+
 		def all
 			@tasks
 		end

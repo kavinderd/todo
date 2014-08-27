@@ -15,6 +15,10 @@ module Todo
 			@list << task_name
 		end
 
+		def remove(task_name)
+			@list.remove(task_name)
+		end
+
 		def tasks
 			@list.all
 		end
