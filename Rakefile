@@ -1,3 +1,9 @@
 require "bundler/gem_tasks"
+require 'rake/testtask'
 
-#TODO How to create a rake task to run all tests
+Rake::TestTask.new do |t|
+	t.libs << "test"
+	t.test_files = FileList['test/*_test.rb', 'test/**/*_test.rb']
+end
+
+

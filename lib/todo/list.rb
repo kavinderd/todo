@@ -6,17 +6,19 @@ module Todo
 			@tasks = []
 		end
 
-		def << (item)
-			@tasks << item
+		def add(name:,**options)
+			list_item= Todo::ListItem.new(name: name, priority: options[:priority])
+			@tasks << list_item
 		end
 
-		def remove(item)
-			@tasks.delete_if{|t| t == item}
+		def remove(name)
+			@tasks.delete_if{|t| t.name == name}
 			all
 		end
 
-		def all
-			@tasks
+		def all(options={})
+			return @tasks.map{|t| t.details} if options[:verbose]
+			@tasks.map{|t| t.name}
 		end
 
 	end
