@@ -17,6 +17,14 @@ class TodoTest < MiniTest::Unit::TestCase
 		assert_equal(["get this done | priority: high"], t.tasks(verbose: true))
 	end
 
+	def test_adding_to_named_list
+		t = Todo::Application.new
+		t.add(name: "do this", list: "my todo")
+		assert_equal([], t.tasks)
+		assert_equal(["my todo"], t.lists)
+		assert_equal(["do this"], t.access_list("my todo").all)
+	end
+
 
 	# Removing Tasks
 	def test_remove_from_general_list

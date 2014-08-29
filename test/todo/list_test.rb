@@ -8,10 +8,22 @@ class ListTest < MiniTest::Unit::TestCase
 		assert_equal([], list.tasks)
 	end
 
+	def test_list_with_name
+		list = Todo::List.new("named list")
+		assert_equal("named list", list.name)
+	end
+
 	def test_list_adds_list_item_objects
 		list = Todo::List.new
 		list.add(name: "my task")
 		#assert_instance_of(Todo::ListItem, list.all[0])
+	end
+
+	def test_adding_sublists
+		list = Todo::List.new
+		list.add(name: 'do this', list: 'my todo')
+		assert_equal(['my todo'], list.lists)
+		assert_equal([], list.tasks)
 	end
 
 	def test_all
@@ -31,5 +43,11 @@ class ListTest < MiniTest::Unit::TestCase
 	  list.add(name: "my task")
 		list.remove("my task")
 		assert_equal([], list.all)
+	end
+
+	def test_access_sub_lists
+		list = Todo::List.new
+		list.add(name: 'do this', list: 'my todo')
+		list.access_list('my_todo')
 	end
 end

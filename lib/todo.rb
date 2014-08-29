@@ -12,7 +12,7 @@ module Todo
 		end
 
 		def add(name:, **options)
-			@list.add(name: name, priority: options[:priority])
+			@list.add(name: name, priority: options[:priority], list: options[:list])
 		end
 
 		def remove(task_name)
@@ -21,6 +21,14 @@ module Todo
 
 		def tasks(options={})
 			@list.all(options)
+		end
+
+		def lists
+			@list.lists
+		end
+
+		def access_list(list_name)
+			@list.access_list(list_name)
 		end
 
 	end
