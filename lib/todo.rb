@@ -1,6 +1,7 @@
 #TODO: Read PR article about require and require relative
 require_relative "todo/version"
 require_relative "todo/list"
+require_relative 'todo/presenter'
 require 'pry'
 require 'pry-debugger'
 module Todo
@@ -8,7 +9,8 @@ module Todo
 	class Application
 	  
 		def initialize()
-			@list = Todo::List.new()
+			@list = Todo::List.new
+      @presenter = Todo::Presenter.new
 		end
 
 		def add(name:, **options)
@@ -20,11 +22,11 @@ module Todo
 		end
 
 		def tasks(options={})
-			@list.all(options)
+      @presenter.present(item: @list, info: :tasks, level: options[:level])
 		end
 
 		def lists
-			@list.lists
+      @presenter.present(item: @list, info: :lists)
 		end
 
 		def access_list(list_name)

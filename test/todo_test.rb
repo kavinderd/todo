@@ -7,22 +7,19 @@ class TodoTest < MiniTest::Unit::TestCase
 	def test_add_to_general_list_without_any_options
 	  t = Todo::Application.new
 		t.add(name: "get this done")
-		assert_equal(["get this done"], t.tasks)
+    assert_output("Tasks\n1. get this done\n") {t.tasks}
 	end
 
 	def test_add_details_to_task
 		t = Todo::Application.new
 		t.add(name: "get this done", priority: "high")
-		assert_equal(["get this done"], t.tasks)
-		assert_equal(["get this done | priority: high"], t.tasks(verbose: true))
+    assert_output("Tasks\n1. get this done | priority: high\n") {t.tasks(level: :verbose)}
 	end
 
 	def test_adding_to_named_list
 		t = Todo::Application.new
 		t.add(name: "do this", list: "my todo")
-		assert_equal([], t.tasks)
-		assert_equal(["my todo"], t.lists)
-		assert_equal(["do this"], t.access_list("my todo").all)
+    assert_output("Lists\n1. my todo\n") { t.lists }
 	end
 
 
@@ -31,6 +28,6 @@ class TodoTest < MiniTest::Unit::TestCase
 		t = Todo::Application.new
 		t.add(name: "get this done")
 		t.remove("get this done")
-		assert_equal([], t.tasks)
+    assert_output("Tasks\n") { t.tasks }
 	end
 end

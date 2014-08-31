@@ -16,7 +16,7 @@ class ListTest < MiniTest::Unit::TestCase
 	def test_list_adds_list_item_objects
 		list = Todo::List.new
 		list.add(name: "my task")
-		#assert_instance_of(Todo::ListItem, list.all[0])
+		assert_instance_of(Todo::ListItem, list.all[0])
 	end
 
 	def test_adding_sublists
@@ -25,17 +25,17 @@ class ListTest < MiniTest::Unit::TestCase
 		assert_equal(['my todo'], list.lists)
 		assert_equal([], list.tasks)
 	end
-
-	def test_all
+  
+	def test_to_h
 		list = Todo::List.new
 		list.add(name: 'my task')
-		assert_equal(["my task"], list.all)
+		assert_equal(true, list.to_h.keys.include?(:tasks))
 	end
 
 	def test_all_with_verbose
 		list = Todo::List.new
 		list.add(name: 'my task', priority: 'high')
-		assert_equal(["my task | priority: high"], list.all(verbose: true))
+		assert_equal('high', list.all.first.priority)
 	end
 
 	def test_removing_from_internal_list
@@ -50,4 +50,5 @@ class ListTest < MiniTest::Unit::TestCase
 		list.add(name: 'do this', list: 'my todo')
 		list.access_list('my_todo')
 	end
+
 end

@@ -4,7 +4,7 @@ module Todo
 		attr_reader :tasks, :lists, :name
 		def initialize(list_name=nil)
 			@tasks = []
-			@name = list_name
+			@name = list_name || 'undefined'
 			@lists = []
 		end
 
@@ -22,8 +22,7 @@ module Todo
 		end
 
 		def all(options={})
-			return @tasks.map{|t| t.details} if options[:verbose]
-			@tasks.map{|t| t.name}
+			@tasks
 		end
 
 		def lists
@@ -32,6 +31,18 @@ module Todo
 
 		def access_list(list_name)
 			list_with_name(list_name)
+		end
+
+		def to_h
+			{
+        name:  name,
+				tasks: @tasks.map{ |t| t.to_h },
+				lists: @lists.map{ |l| l.to_h }
+			}
+		end
+
+		def type
+			"list"
 		end
 
 		private

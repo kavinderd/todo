@@ -8,8 +8,9 @@ class ListItemTest < MiniTest::Unit::TestCase
 		assert_instance_of(Todo::ListItem, Todo::ListItem.new(name: "my item"))
 	end
 
-	def test_details
+	def test_to_h
 		li = Todo::ListItem.new(name: 'my item', priority: 'high')
-		assert_equal("my item | priority: high", li.details)
+		assert_equal({name: 'my item', priority: "high"}, li.to_h)
 	end
+
 end
