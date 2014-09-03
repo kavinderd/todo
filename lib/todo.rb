@@ -8,8 +8,8 @@ module Todo
 
 	class Application
 	  
-		def initialize()
-			@list = Todo::List.new(persisted: persisted)
+		def initialize(persistent: false)
+      @list = init_list(persistent) 
       @presenter = Todo::Presenter.new
 		end
 
@@ -29,12 +29,19 @@ module Todo
       @presenter.present(item: @list, info: :lists)
 		end
 
-    def load
-    end
-
 		def access_list(list_name)
 			@list.access_list(list_name)
 		end
+    
+    private
+
+    def init_list(persistent)
+      if persistent
+        Todo::List.load
+      else
+        Todo::List.new
+      end
+    end
 
 	end
 end

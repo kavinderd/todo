@@ -33,10 +33,9 @@ class TodoTest < MiniTest::Unit::TestCase
 
   #Persistence
   def test_saving_base_list_to_file
-    t = Todo::Application.new(persist: true)
+    t = Todo::Application.new(persistent: true)
     t.add(name: "get this done")
-    t = Todo::Application.new(persist: true)
-    t.load
+    t = Todo::Application.new(persistent: true)
     assert_output("Tasks\n1. get this done\n") { t.tasks }
   end
 end
