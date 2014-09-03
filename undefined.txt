@@ -1,8 +1,19 @@
 --- !ruby/object:Todo::List
 tasks:
 - !ruby/object:Todo::ListItem
-  name: get this done
+  name: test_task
+  priority: 
+- !ruby/object:Todo::ListItem
+  name: test_task
   priority: 
 name: undefined
-lists: []
+lists:
+- !ruby/object:Todo::List
+  tasks:
+  - !ruby/object:Todo::ListItem
+    name: new
+    priority: 
+  name: sub
+  lists: []
+  persistent: false
 persistent: true

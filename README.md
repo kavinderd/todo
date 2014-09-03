@@ -12,25 +12,25 @@ Todo can be used in the following ways:
 
 1. Add a task to the general list:
 	
-	`todo 'get some milk'`
+	`todo add 'get some milk'`
 
 2. Add a task to the general list with priority:
 
-   `todo 'get some milk' -p high`
+   `todo add 'get some milk' -p high`
 
 This will push the item to the top of the list.
 
 3. Add a task to the general list with a due date:
 
-   `todo 'get some milk' -d (tomorrow, 1/1/15, 1 week)`
+   `todo add 'get some milk' -d (tomorrow, 1/1/15, 1 week)`
 
 4. Add a task to a specific list:
 
-  	`todo 'get some milk' -l groceries`
+  	`todo add 'get some milk' -l groceries`
 
 5. Recall a list
 
-	  `todo groceries`
+	  `todo lists groceries`
 
 This returnes
 

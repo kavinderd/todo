@@ -1,3 +1,54 @@
 #! /usr/bin/env ruby
+#
+require_relative '../lib/todo'
+require 'main'
 
+Main {
 
+  mode "add" do
+    argument("task"){
+      cast :string
+    }  
+    option('list'){
+        argument :optional
+        description 'pass a list to add a task to'
+      }
+
+    def run
+      app = Todo::Application.new(persistent: true) 
+      app.add(name:params['task'].value, list: params['list'].value)
+      app.tasks
+    end
+  end
+
+  mode "tasks" do
+
+    def run
+      app = Todo::Application.new(persistent: true)
+      app.tasks(verbose: true)
+    end
+  end
+  
+  mode "remove" do
+    argument("task"){
+      cast :string
+    }  
+    def run
+      app = Todo::Application.new(persistent: true)
+      app.remove(params['task'].value)
+      app.tasks(verbose: true)
+    end
+  end
+
+  mode "lists" do
+    argument("list"){
+      optional
+      cast :string
+      description "the sublist to access"
+    }
+    def run
+      app =Todo::Application.new(persistent: true)
+      params["list"].given? ? app.access_list(params["list"].value) : app.lists
+    end
+  end
+}
