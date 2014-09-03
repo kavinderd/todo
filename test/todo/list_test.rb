@@ -51,4 +51,12 @@ class ListTest < MiniTest::Unit::TestCase
 		list.access_list('my_todo')
 	end
 
+  #Persistence Test
+  def test_saving_to_file
+    list = Todo::List.new(persistent: true)
+    list.add(name: 'do this')
+    list = Todo::List.load
+    assert_equal('do this', list.tasks.first.name) 
+  end
+
 end

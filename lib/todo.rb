@@ -9,7 +9,7 @@ module Todo
 	class Application
 	  
 		def initialize()
-			@list = Todo::List.new
+			@list = Todo::List.new(persisted: persisted)
       @presenter = Todo::Presenter.new
 		end
 
@@ -28,6 +28,9 @@ module Todo
 		def lists
       @presenter.present(item: @list, info: :lists)
 		end
+
+    def load
+    end
 
 		def access_list(list_name)
 			@list.access_list(list_name)

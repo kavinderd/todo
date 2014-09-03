@@ -1,11 +1,13 @@
 require_relative "list_item"
+require 'yaml'
 module Todo
 	class List
 		attr_reader :tasks, :lists, :name
-		def initialize(list_name=nil)
+		def initialize(list_name=nil, persistent:false)
 			@tasks = []
 			@name = list_name || 'undefined'
 			@lists = []
+      @persistent = persistent
 		end
 
 		def add(name:,**options)
@@ -14,10 +16,12 @@ module Todo
 			else
 				add_task(name, options)
 			end
+      save
 		end
 
 		def remove(name)
 			@tasks.delete_if{|t| t.name == name}
+      save
 			all
 		end
 
@@ -44,6 +48,17 @@ module Todo
 		def type
 			"list"
 		end
+
+    def save
+      return unless @name == "undefined"
+      File.open("undefined.txt", "w") do |f|
+        f.write YAML.dump(self)
+      end
+    end
+
+    def self.load
+      YAML.load(File.open("undefined.txt")) 
+    end
 
 		private
 
