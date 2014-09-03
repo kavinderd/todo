@@ -57,6 +57,13 @@ class ListTest < MiniTest::Unit::TestCase
     list.add(name: 'do this')
     list = Todo::List.load
     assert_equal('do this', list.tasks.first.name) 
+    File.delete('undefined.txt')
   end
+
+  def test_loading_when_there_is_no_file
+    list = Todo::List.load
+    assert_equal([], list.tasks) 
+  end
+
 
 end

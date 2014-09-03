@@ -16,12 +16,12 @@ module Todo
 			else
 				add_task(name, options)
 			end
-      save
+      update
 		end
 
 		def remove(name)
 			@tasks.delete_if{|t| t.name == name}
-      save
+      update
 			all
 		end
 
@@ -49,18 +49,26 @@ module Todo
 			"list"
 		end
 
+    def self.load
+      if File.exists?('undefined.txt')
+        YAML.load(File.open("undefined.txt")) 
+      else
+        self.new(persistent: true)
+      end
+    end
+
+		private
+    
+    def update
+      save if @persistent
+    end
+   
     def save
       return unless @name == "undefined"
       File.open("undefined.txt", "w") do |f|
         f.write YAML.dump(self)
       end
     end
-
-    def self.load
-      YAML.load(File.open("undefined.txt")) 
-    end
-
-		private
 
 		def create_or_find(list_name)
 			list = list_with_name(list_name)
