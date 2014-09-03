@@ -50,8 +50,11 @@ module Todo
       tasks.each_with_index do |t, i|
         order = i + 1
         substring = "#{order}. #{t.delete(:name)} "
+        substring << "| ---- FINISHED ----" if t.delete(:finished)
         t.each do |key, value|
-          substring << "| #{key}: #{value}"
+          if value
+            substring << "| #{key}: #{value}"
+          end
         end
         substring << "\n"
         output << substring

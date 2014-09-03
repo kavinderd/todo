@@ -17,6 +17,14 @@ module Todo
 			@list.add(name: name, priority: options[:priority], list: options[:list])
 		end
 
+    def finish(task_name, **options)
+      if options[:list]
+        access_list(options[:list]).finish(task_name)
+      else
+        @list.finish(task_name)
+      end
+    end
+
 		def remove(task_name)
 			@list.remove(task_name)
 		end

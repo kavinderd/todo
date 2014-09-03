@@ -19,6 +19,11 @@ module Todo
       update
 		end
 
+    def finish(name)
+      @tasks.each { |t| t.finish! if t.name == name }
+      update
+    end
+
 		def remove(name)
 			@tasks.delete_if{|t| t.name == name}
       update

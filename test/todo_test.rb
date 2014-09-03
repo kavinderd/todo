@@ -3,6 +3,9 @@ require 'minitest/autorun'
 
 class TodoTest < MiniTest::Unit::TestCase
 
+  def teardown
+    File.delete('undefined.txt') if File.exists?('undefined.txt')
+  end
 	# Adding Tasks
 	def test_add_to_general_list_without_any_options
 	  t = Todo::Application.new
@@ -21,6 +24,14 @@ class TodoTest < MiniTest::Unit::TestCase
 		t.add(name: "do this", list: "my todo")
     assert_output("Lists\n1. my todo\n") { t.lists }
 	end
+
+  #Finishing Tasks
+  def test_finishing_task
+    t = Todo::Application.new
+    t.add(name: "do this now")
+    t.finish("do this now")
+    assert_output("Tasks\n1. do this now | ---- FINISHED ----\n") { t.tasks(level: :verbose)}
+  end
 
 
 	# Removing Tasks

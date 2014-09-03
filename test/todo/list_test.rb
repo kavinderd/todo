@@ -51,6 +51,15 @@ class ListTest < MiniTest::Unit::TestCase
 		list.access_list('my_todo')
 	end
 
+  #Marking List Items as Finished
+
+  def test_finish_list_item
+    list = Todo::List.new
+    list.add(name: 'do this')
+    list.finish('do this')
+    assert_equal(true, list.tasks.first.finished?)
+  end
+
   #Persistence Test
   def test_saving_to_file
     list = Todo::List.new(persistent: true)
