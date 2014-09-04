@@ -39,6 +39,21 @@ Main {
       app.tasks(verbose: true)
     end
   end
+  
+  mode "finish" do
+    
+    argument("task") {
+      cast :string
+    }
+    options("list") {
+      argument :optional
+    }
+    def run
+      app = Todo::Application.new(persistent: true)
+      app.finish(params["task"].value, list: params["list"].value)
+    end
+  
+  end
 
   mode "lists" do
     argument("list"){

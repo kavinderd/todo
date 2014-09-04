@@ -33,6 +33,13 @@ class TodoTest < MiniTest::Unit::TestCase
     assert_output("Tasks\n1. do this now | ---- FINISHED ----\n") { t.tasks(level: :verbose)}
   end
 
+  def test_finishing_task_on_sublist
+    t = Todo::Application.new
+    t.add(name: "do this", list: "submarine")
+    t.finish("do this", list: "submarine")
+    assert_output("Tasks\n1. do this | ---- FINISHED ----\n") { t.tasks(level: :verbose, list: "submarine") }
+  end
+
 
 	# Removing Tasks
 	def test_remove_from_general_list

@@ -30,7 +30,8 @@ module Todo
 		end
 
 		def tasks(options={})
-      @presenter.present(item: @list, info: :tasks, level: options[:level])
+      item = options[:list] ? access_list(options[:list]) : @list
+      @presenter.present(item: item, info: :tasks, level: options[:level])
 		end
 
 		def lists
