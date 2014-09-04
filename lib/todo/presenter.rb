@@ -7,6 +7,7 @@ module Todo
       @presentable = item
       @level = options[:level] ||=  :basic 
       @info = options.fetch(:info)	
+      @exclude = options[:exclude]
       print send("render_#{@presentable.type}_#{@info}_#{@level}", @presentable)
     end	
 
@@ -35,9 +36,9 @@ module Todo
 
     #TASK PRESENTATION
     def render_list_tasks_basic(presentable)
-      tasks = presentable.to_h
+      tasks = presentable_tasks
       output = "Tasks\n"
-      tasks[:tasks].each_with_index do |t,i|
+      tasks.each_with_index do |t,i|
         order = i + 1
         output << "#{order}. #{t[:name]}\n"
       end
@@ -45,7 +46,7 @@ module Todo
     end
 
     def render_list_tasks_verbose(presentable)
-      tasks = presentable.to_h[:tasks]
+      tasks = presentable_tasks
       output = "Tasks\n"
       tasks.each_with_index do |t, i|
         order = i + 1
@@ -60,6 +61,13 @@ module Todo
         output << substring
       end 
       output
+    end
+    
+    def presentable_tasks
+      @data = @presentable.to_h[:tasks]
+      @data = @data.select { |item| item[:finished] == false } if @exclude == :finished
+      @data = @data.select { |item| item[:finished] == true  } if @exclude == :open
+      @data
     end
   end
 end
