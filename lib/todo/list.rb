@@ -4,7 +4,7 @@ require 'yaml'
 module Todo
 	class List
     DIR_PATH = File.join(Dir.home, "todo")
-    FILE_PATH = File.join(DIR_PATH, "undefined.yml")
+    FILE_PATH = File.join(DIR_PATH, "todo.yml")
 		attr_reader :tasks, :lists, :name
 		def initialize(list_name=nil, persistent:false)
 			@tasks = []

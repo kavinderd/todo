@@ -4,7 +4,7 @@ require 'minitest/autorun'
 class ListTest < MiniTest::Unit::TestCase
 
   def teardown
-    file_path = File.join(Dir.home, "todo", "undefined.txt")
+    file_path = File.join(Dir.home, "todo", "todo.yml")
     File.delete(file_path) if File.exists?(file_path)
   end
 	

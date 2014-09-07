@@ -6,7 +6,7 @@ require 'pry-debugger'
 class TodoTest < MiniTest::Unit::TestCase
 
   def teardown
-    file_path = File.join(Dir.home, "todo", "undefined.yml")
+    file_path = File.join(Dir.home, "todo", "todo.yml")
     File.delete(file_path) if File.exists?(file_path)
   end
 	# Adding Tasks
