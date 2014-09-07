@@ -1,7 +1,10 @@
 require_relative "list_item"
 require 'yaml'
+
 module Todo
 	class List
+    DIR_PATH = File.join(Dir.home, "todo")
+    FILE_PATH = File.join(DIR_PATH, "undefined.yml")
 		attr_reader :tasks, :lists, :name
 		def initialize(list_name=nil, persistent:false)
 			@tasks = []
@@ -55,9 +58,10 @@ module Todo
 		end
 
     def self.load
-      if File.exists?('undefined.txt')
-        YAML.load(File.open("undefined.txt")) 
+      if File.exists?(FILE_PATH)
+        YAML.load(File.open(FILE_PATH)) 
       else
+        Dir.mkdir(DIR_PATH) unless Dir.exists?(DIR_PATH)
         self.new(persistent: true)
       end
     end
@@ -70,7 +74,7 @@ module Todo
    
     def save
       return unless @name == "undefined"
-      File.open("undefined.txt", "w") do |f|
+      File.open(FILE_PATH, "w") do |f|
         f.write YAML.dump(self)
       end
     end
@@ -101,5 +105,6 @@ module Todo
 			list.add(name: name, priority: options[:priority])	
 		end
 
+   
 	end
 end

@@ -1,9 +1,9 @@
 #TODO: Read PR article about require and require relative
+
+require_relative "todo/version"
 require_relative "todo/version"
 require_relative "todo/list"
 require_relative 'todo/presenter'
-require 'pry'
-require 'pry-debugger'
 module Todo
 
 	class Application
@@ -31,6 +31,7 @@ module Todo
 
 		def tasks(options={})
       item = options[:list] ? access_list(options[:list]) : @list
+      return "no such list"  unless item
       @presenter.present(item: item, info: :tasks, level: options[:level])
 		end
 

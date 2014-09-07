@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-require_relative '../lib/todo'
+require 'todo'
 require 'main'
 
 Main {
@@ -9,7 +9,7 @@ Main {
     argument("task"){
       cast :string
     }  
-    option('list'){
+    option('list', 'l'){
         argument :optional
         description 'pass a list to add a task to'
       }
@@ -22,10 +22,14 @@ Main {
   end
 
   mode "tasks" do
+    
+    option("list", 'l') {
+      argument :optional
+    }
 
     def run
       app = Todo::Application.new(persistent: true)
-      app.tasks(verbose: true)
+      app.tasks(verbose: true, list: params["list"].value)
     end
   end
   
@@ -33,10 +37,25 @@ Main {
     argument("task"){
       cast :string
     }  
+    option("list", "l"){
+      argument :optional
+    }
     def run
       app = Todo::Application.new(persistent: true)
-      app.remove(params['task'].value)
-      app.tasks(verbose: true)
+      allowed = ["Y", "N", "yes", "no"]
+      allowed_positives = ["Y", "yes", "y", "Yes"]
+      allowed_negatives = ["N", "no", "n", "No"]
+      command =""
+      until(allowed_positives.include?(command) || allowed_negatives.include?(command))
+        print "Are you sure you want to remove this task? (Y/N) "
+        command = stdin.gets.chomp 
+      end
+      if allowed_positives.include?(command)
+        task = params["task"].value
+        app.remove(task)
+        puts "task:#{task} removed"
+        app.tasks(verbose: true)
+      end
     end
   end
   
@@ -45,7 +64,7 @@ Main {
     argument("task") {
       cast :string
     }
-    options("list") {
+    option("list", "l") {
       argument :optional
     }
     def run

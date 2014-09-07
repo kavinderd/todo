@@ -1,5 +1,3 @@
-require 'pry'
-require 'pry-debugger'
 module Todo
   class Presenter
 

@@ -2,6 +2,11 @@ require_relative '../../lib/todo/list'
 require 'minitest/autorun'
 
 class ListTest < MiniTest::Unit::TestCase
+
+  def teardown
+    file_path = File.join(Dir.home, "todo", "undefined.txt")
+    File.delete(file_path) if File.exists?(file_path)
+  end
 	
 	def test_inital_list_state
 	  list = Todo::List.new
@@ -66,12 +71,6 @@ class ListTest < MiniTest::Unit::TestCase
     list.add(name: 'do this')
     list = Todo::List.load
     assert_equal('do this', list.tasks.first.name) 
-    File.delete('undefined.txt')
-  end
-
-  def test_loading_when_there_is_no_file
-    list = Todo::List.load
-    assert_equal([], list.tasks) 
   end
 
 

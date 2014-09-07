@@ -1,10 +1,13 @@
 require_relative '../lib/todo'
 require 'minitest/autorun'
+require 'pry'
+require 'pry-debugger'
 
 class TodoTest < MiniTest::Unit::TestCase
 
   def teardown
-    File.delete('undefined.txt') if File.exists?('undefined.txt')
+    file_path = File.join(Dir.home, "todo", "undefined.yml")
+    File.delete(file_path) if File.exists?(file_path)
   end
 	# Adding Tasks
 	def test_add_to_general_list_without_any_options
