@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["kavinderd@gmail.com"]
   spec.summary       = %q{Command Line Based Todo App}
   spec.description   = %q{Because if you spend all day at the terminal you might as well keep your todos there as well}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/kavinderd/todo"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -19,8 +19,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.5"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "pry-debugger"
-  spec.add_runtime_dependency "main"
+  spec.add_development_dependency "rake", "~> 10.3"
+  spec.add_development_dependency "pry", "~> 0.10"
+  spec.add_development_dependency "pry-debugger", "~>0.2"
+  spec.add_runtime_dependency "main", "~>6.0"
 end
