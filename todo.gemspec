@@ -4,11 +4,11 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'todo/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "todo"
+  spec.name          = "tnt"
   spec.version       = Todo::VERSION
   spec.authors       = ["Kavinder Dhaliwal"]
   spec.email         = ["kavinderd@gmail.com"]
-  spec.summary       = %q{Command Line Based Todo App}
+  spec.summary       = %q{TNT's Not a Todo}
   spec.description   = %q{Because if you spend all day at the terminal you might as well keep your todos there as well}
   spec.homepage      = "https://github.com/kavinderd/todo"
   spec.license       = "MIT"
